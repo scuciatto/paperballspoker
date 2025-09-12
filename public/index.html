@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paper Balls Poker - Planning Poker Tool</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🃏 Paper Balls Poker</h1>
+            <p>Real-time Planning Poker for Agile Teams</p>
+        </header>
+        
+        <main>
+            <div class="card">
+                <h2>Create a New Session</h2>
+                <form id="create-session-form">
+                    <div class="form-group">
+                        <label for="session-name">Session Name:</label>
+                        <input type="text" id="session-name" name="session-name" placeholder="Sprint Planning - User Stories" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="your-name">Your Name:</label>
+                        <input type="text" id="your-name" name="your-name" placeholder="Enter your name" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Create Session</button>
+                </form>
+            </div>
+            
+            <div class="divider">
+                <span>OR</span>
+            </div>
+            
+            <div class="card">
+                <h2>Join Existing Session</h2>
+                <form id="join-session-form">
+                    <div class="form-group">
+                        <label for="session-id">Session ID:</label>
+                        <input type="text" id="session-id" name="session-id" placeholder="Enter session ID" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="join-name">Your Name:</label>
+                        <input type="text" id="join-name" name="join-name" placeholder="Enter your name" required>
+                    </div>
+                    <button type="submit" class="btn btn-secondary">Join Session</button>
+                </form>
+            </div>
+        </main>
+        
+        <footer>
+            <p>No registration required. Sessions are temporary and disappear when empty.</p>
+        </footer>
+    </div>
+    
+    <script src="/js/main.js"></script>
+</body>
+</html>
