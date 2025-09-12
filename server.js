@@ -2,7 +2,12 @@ const express = require('express');
 const http = require('http');
 const socketIo = require('socket.io');
 const path = require('path');
-const { v4: uuidv4 } = require('uuid');
+
+// Dynamic import for ES module
+let uuidv4;
+const uuidPromise = import('uuid').then(({ v4 }) => {
+    uuidv4 = v4;
+});
 
 const app = express();
 const server = http.createServer(app);
@@ -27,7 +32,8 @@ app.get('/room/:roomId', (req, res) => {
 });
 
 // API to create a new session
-app.post('/api/create-session', (req, res) => {
+app.post('/api/create-session', async (req, res) => {
+    await uuidPromise; // Ensure uuid is loaded
     const { sessionName } = req.body;
     const sessionId = uuidv4();
     
