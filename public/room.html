@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poker Planning Room - Paper Balls Poker</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="room-header">
+            <h1 id="session-name">Poker Planning Session</h1>
+            <div class="session-info">
+                <span id="session-id-display"></span>
+                <button id="copy-link-btn" class="btn btn-small">Copy Link</button>
+            </div>
+        </header>
+        
+        <main class="room-main">
+            <!-- Participants section -->
+            <section class="participants-section">
+                <h2>Participants</h2>
+                <div id="participants-list" class="participants-grid">
+                    <!-- Participants will be dynamically added here -->
+                </div>
+            </section>
+            
+            <!-- Voting cards section -->
+            <section class="voting-section">
+                <h2>Your Vote</h2>
+                <div class="voting-cards">
+                    <button class="card-btn" data-value="0">0</button>
+                    <button class="card-btn" data-value="1">1</button>
+                    <button class="card-btn" data-value="2">2</button>
+                    <button class="card-btn" data-value="3">3</button>
+                    <button class="card-btn" data-value="5">5</button>
+                    <button class="card-btn" data-value="8">8</button>
+                    <button class="card-btn" data-value="13">13</button>
+                    <button class="card-btn" data-value="21">21</button>
+                    <button class="card-btn" data-value="?">?</button>
+                    <button class="card-btn" data-value="☕">☕</button>
+                </div>
+                <div id="your-vote-display" class="vote-display">
+                    <span>Select a card to vote</span>
+                </div>
+            </section>
+            
+            <!-- Controls section -->
+            <section class="controls-section">
+                <button id="reveal-btn" class="btn btn-primary">Reveal Votes</button>
+                <button id="reset-btn" class="btn btn-secondary">Reset Votes</button>
+            </section>
+            
+            <!-- Results section -->
+            <section id="results-section" class="results-section" style="display: none;">
+                <h2>Voting Results</h2>
+                <div id="results-summary" class="results-summary">
+                    <!-- Results summary will be displayed here -->
+                </div>
+                <div id="results-details" class="results-details">
+                    <!-- Detailed results will be displayed here -->
+                </div>
+            </section>
+        </main>
+        
+        <!-- Connection status -->
+        <div id="connection-status" class="connection-status">
+            <span class="status-indicator"></span>
+            <span class="status-text">Connecting...</span>
+        </div>
+    </div>
+    
+    <!-- Join session modal (for when accessing via direct link) -->
+    <div id="join-modal" class="modal">
+        <div class="modal-content">
+            <h2>Join Session</h2>
+            <form id="join-form">
+                <div class="form-group">
+                    <label for="modal-name">Your Name:</label>
+                    <input type="text" id="modal-name" name="modal-name" placeholder="Enter your name" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Join Session</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/room.js"></script>
+</body>
+</html>
