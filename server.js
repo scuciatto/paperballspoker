@@ -2,7 +2,6 @@ const express = require('express');
 const http = require('http');
 const socketIo = require('socket.io');
 const path = require('path');
-const { v4: uuidv4 } = require('uuid');
 
 const app = express();
 const server = http.createServer(app);
@@ -12,6 +11,13 @@ const PORT = process.env.PORT || 3000;
 
 // Store active sessions in memory
 const sessions = new Map();
+
+// Dynamic import for uuid
+let uuidv4;
+(async () => {
+    const { v4 } = await import('uuid');
+    uuidv4 = v4;
+})();
 
 // Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
@@ -27,8 +33,15 @@ app.get('/room/:roomId', (req, res) => {
 });
 
 // API to create a new session
-app.post('/api/create-session', (req, res) => {
+app.post('/api/create-session', async (req, res) => {
     const { sessionName } = req.body;
+    
+    // Ensure uuid is loaded before using it
+    if (!uuidv4) {
+        const { v4 } = await import('uuid');
+        uuidv4 = v4;
+    }
+    
     const sessionId = uuidv4();
     
     sessions.set(sessionId, {
